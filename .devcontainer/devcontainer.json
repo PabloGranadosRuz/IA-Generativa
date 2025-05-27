@@ -1,8 +1,8 @@
 {
-    "name": "IA Generativa ",
-    "dockerComposeFile": "compose.yml", //Correcto, apunta al compose.yml en la misma carpeta
-    "service": "app", // Correcto, usa el servicio 'app' como tu entorno principal
-    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "name": "IA Generativa",
+    "dockerComposeFile": "compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspaces/generative-ai",
 
     "features": {
         "ghcr.io/prulloac/devcontainer-features/ollama:1": {},
@@ -16,7 +16,6 @@
                 "GitHub.copilot-chat",
                 "ms-toolsai.prompty",
                 "ritwickdey.LiveServer"
-                // No se necesitan extensiones específicas de Qdrant.
             ]
         }
     },
@@ -25,14 +24,13 @@
         "cpus": 4
     },
     "forwardPorts": [
-        6333,       // Este puerto ahora lo usará Qdrant (o el puerto que hayas elegido si hubo conflicto)
-        8000        // El puerto 8000 de tu aplicación Uvicorn
-        // , 6334   # Descomenta si mapeaste el puerto gRPC de Qdrant y quieres accederlo desde el host
+        6333,
+        8000
     ],
-    "postCreateCommand": "pip install --upgrade pip"
-    // Si tu código Python en el servicio 'app' interactúa con Qdrant,
-    // es crucial instalar el cliente de Qdrant aquí para que esté disponible:
-    // "postCreateCommand": "pip install --upgrade pip qdrant-client"
-    // O si ya tienes un requirements.txt, asegúrate de que esté listado ahí:
+    // Asegúrate de que tus dependencias Python se instalen correctamente.
+    // Si tienes un requirements.txt, usa la segunda opción.
+    // Si no, puedes instalar qdrant-client directamente.
+    "postCreateCommand": "pip install --upgrade pip && pip install qdrant-client"
+    // O si tienes un requirements.txt:
     // "postCreateCommand": "pip install --upgrade pip && pip install -r requirements.txt"
 }

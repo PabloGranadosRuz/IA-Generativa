@@ -1,5 +1,5 @@
 // Variables de configuración
-const API_URL = 'http://localhost:8080'; // URL de la API (puerto 8080)
+const API_URL = 'http://localhost:8081'; // URL de la API (puerto 8081)
 
 // Elementos del DOM
 const chatHistory = document.getElementById('chatHistory');

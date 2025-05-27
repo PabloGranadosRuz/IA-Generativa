@@ -1,0 +1,1 @@
+Para contratar los stands de comida el plazo es hasta octubre

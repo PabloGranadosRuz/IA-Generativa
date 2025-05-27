@@ -51,13 +51,13 @@ async def read_root():
 
 @app.post("/api/chat")
 async def chat(chat_message: ChatMessage):
+    print(f"Recibida consulta: {chat_message.message}")
     try:
-        # Query embeddings and generate response
         docs = query_embeddings(chat_message.message)
         response_text = generate_response_with_embeddings(chat_message.message, docs)
+        print(f"Respuesta generada: {response_text}")
         return {"response": response_text}
     except Exception as e:
-        # Log the error for debugging
         print(f"Error processing chat message: {str(e)}")
         raise HTTPException(
             status_code=500,
@@ -66,7 +66,7 @@ async def chat(chat_message: ChatMessage):
 
 if __name__ == "__main__":
     import uvicorn
-    print("Starting server on http://localhost:8080")
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+    print("Starting server on http://localhost:8081")
+    uvicorn.run(app, host="0.0.0.0", port=8081)
 
 # ... existing code ... 
